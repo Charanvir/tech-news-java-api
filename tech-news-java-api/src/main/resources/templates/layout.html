@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--Specify the Thymeleaf namespace definitions and allowing the use of Thymeleaf syntax-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--makes the title dynamic. Title will change with the templates we bring in-->
+    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Just Tech News</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="wrapper">
+    <header>
+        <h1>
+            <a href="/">Just Tech News</a>
+        </h1>
+        <nav>
+            <div th:if="${loggedIn}">
+                <a th:href="@{/dashboard}">dashboard</a>
+                <a th:href="@{/users/logout}">logout</a>
+            </div>
+            <div th:unless="${loggedIn}">
+                <a th:href="@{/login}">login</a>
+            </div>
+        </nav>
+    </header>
+
+<!--    Will allow other templates to be displayed in this section. Much like the {{body in Handlebars.js}}-->
+    <main layout:fragment="content">
+        <p>This is filled by the content template.</p>
+    </main>
+
+    <footer>
+        Thanks for visiting!
+    </footer>
+</div>
+
+</body>
+</html>
